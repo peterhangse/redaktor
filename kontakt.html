@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nyheter - REDAKTÖR Stil 2</title>
-    <meta name="description" content="Senaste nyheterna från REDAKTÖR">
+    <title>Kontakt - REDAKTÖR</title>
+    <meta name="description" content="Kontakta REDAKTÖR">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,16 +92,6 @@
             color: var(--primary-foreground);
         }
 
-        .nav-link.back-btn {
-            background-color: var(--tagline);
-            padding: 0.5rem 1.5rem;
-            color: var(--primary-foreground);
-        }
-
-        .nav-link.back-btn:hover {
-            background-color: hsl(0, 70%, 50%);
-        }
-
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -157,66 +147,120 @@
             opacity: 0;
         }
 
-        /* News Grid */
-        .news-grid-section {
+        /* Contact Section */
+        .contact-section {
             max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
-        }
-
-        .news-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
         }
 
-        .news-card {
-            background-color: var(--background);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            text-decoration: none;
-            display: block;
+        .contact-info {
             animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.2s;
             opacity: 0;
         }
 
-        .news-card:nth-child(1) { animation-delay: 0.2s; }
-        .news-card:nth-child(2) { animation-delay: 0.25s; }
-        .news-card:nth-child(3) { animation-delay: 0.3s; }
-        .news-card:nth-child(4) { animation-delay: 0.35s; }
-        .news-card:nth-child(5) { animation-delay: 0.4s; }
-        .news-card:nth-child(6) { animation-delay: 0.45s; }
-
-        .news-card:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+        .contact-info h2 {
+            font-size: 1.75rem;
+            color: var(--foreground);
+            margin-bottom: 1.5rem;
         }
 
-        .news-date {
-            font-size: 0.75rem;
+        .contact-info p {
             color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+            font-size: 1.125rem;
+        }
+
+        .contact-details .icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-foreground);
+            font-size: 0.75rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .contact-form h2 {
+            font-size: 1.75rem;
+            color: var(--foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.875rem 2rem;
+            border: none;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-        }
-
-        .news-card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--foreground);
-            margin-top: 0.5rem;
-            margin-bottom: 0.75rem;
-            transition: color 0.3s ease;
-        }
-
-        .news-card:hover .news-card-title {
-            color: var(--primary);
-        }
-
-        .news-excerpt {
-            color: var(--muted-foreground);
             font-size: 0.875rem;
-            line-height: 1.6;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary);
         }
 
         /* Footer */
@@ -295,12 +339,6 @@
         }
 
         /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -318,7 +356,7 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
             }
 
-            .news-grid {
+            .contact-section {
                 grid-template-columns: 1fr;
             }
 
@@ -337,66 +375,69 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="stil2.html" class="nav-logo">REDAKTÖR</a>
+            <a href="index.html" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="index.html" class="nav-link back-btn">← Stil 1</a>
-                <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
-                <a href="stil2-nyheter.html" class="nav-link active">Nyheter</a>
-                <a href="stil2-projekt.html" class="nav-link">Projekt</a>
-                <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
+                <a href="omoss.html" class="nav-link">Om Oss</a>
+                <a href="nyheter.html" class="nav-link">Nyheter</a>
+                <a href="projekt.html" class="nav-link">Projekt</a>
+                <a href="kontakt.html" class="nav-link active">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="index.html" class="nav-link back-btn">← Stil 1</a>
-            <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
-            <a href="stil2-nyheter.html" class="nav-link active">Nyheter</a>
-            <a href="stil2-projekt.html" class="nav-link">Projekt</a>
-            <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
+            <a href="omoss.html" class="nav-link">Om Oss</a>
+            <a href="nyheter.html" class="nav-link">Nyheter</a>
+            <a href="projekt.html" class="nav-link">Projekt</a>
+            <a href="kontakt.html" class="nav-link active">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
 
     <!-- Page Header -->
     <header class="page-header">
-        <h1>Nyheter</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+        <h1>Kontakt</h1>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
     </header>
 
-    <!-- News Grid -->
-    <section class="news-grid-section">
-        <div class="news-grid">
-            <a href="#" class="news-card">
-                <span class="news-date">15 Nov 2024</span>
-                <h3 class="news-card-title">Lorem Ipsum Dolor Sit Amet</h3>
-                <p class="news-excerpt">Consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">12 Nov 2024</span>
-                <h3 class="news-card-title">Tempor Incididunt Ut Labore</h3>
-                <p class="news-excerpt">Et dolore magna aliqua ut enim ad minim veniam.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">8 Nov 2024</span>
-                <h3 class="news-card-title">Quis Nostrud Exercitation</h3>
-                <p class="news-excerpt">Ullamco laboris nisi ut aliquip ex ea commodo.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">1 Nov 2024</span>
-                <h3 class="news-card-title">Duis Aute Irure Dolor</h3>
-                <p class="news-excerpt">In reprehenderit in voluptate velit esse cillum dolore.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">28 Okt 2024</span>
-                <h3 class="news-card-title">Excepteur Sint Occaecat</h3>
-                <p class="news-excerpt">Cupidatat non proident sunt in culpa qui officia.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">20 Okt 2024</span>
-                <h3 class="news-card-title">Deserunt Mollit Anim</h3>
-                <p class="news-excerpt">Id est laborum sed ut perspiciatis unde omnis.</p>
-            </a>
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-info">
+            <h2>Lorem Ipsum</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <ul class="contact-details">
+                <li>
+                    <span class="icon">✉</span>
+                    lorem@ipsum.com
+                </li>
+                <li>
+                    <span class="icon">📍</span>
+                    Lorem, Ipsum
+                </li>
+                <li>
+                    <span class="icon">📞</span>
+                    00-000 00 00
+                </li>
+            </ul>
+        </div>
+
+        <div class="contact-form">
+            <h2>Lorem Ipsum</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Lorem</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Ipsum</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Dolor</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Lorem</button>
+            </form>
         </div>
     </section>
 
@@ -410,10 +451,10 @@
             <div class="footer-links">
                 <h4>Lorem Ipsum</h4>
                 <ul>
-                    <li><a href="stil2-omoss.html">Om Oss</a></li>
-                    <li><a href="stil2-nyheter.html">Nyheter</a></li>
-                    <li><a href="stil2-projekt.html">Projekt</a></li>
-                    <li><a href="stil2-kontakt.html">Kontakt</a></li>
+                    <li><a href="omoss.html">Om Oss</a></li>
+                    <li><a href="nyheter.html">Nyheter</a></li>
+                    <li><a href="projekt.html">Projekt</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">
