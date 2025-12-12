@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lorem Ipsum - REDAKTÖR</title>
-    <meta name="description" content="Lorem ipsum dolor sit amet consectetur adipiscing elit">
+    <title>Kommunkoll - REDAKTÖR</title>
+    <meta name="description" content="Bevakar kommuners hemsidor och meddelar när ett nytt protokoll finns tillgängligt.">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -133,7 +133,7 @@
         .page-header-background {
             position: absolute;
             inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&q=80');
+            background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=80');
             background-size: cover;
             background-position: center;
         }
@@ -187,6 +187,7 @@
         .content-section:nth-child(1) { animation-delay: 0.2s; }
         .content-section:nth-child(2) { animation-delay: 0.3s; }
         .content-section:nth-child(3) { animation-delay: 0.4s; }
+        .content-section:nth-child(4) { animation-delay: 0.5s; }
 
         .content-section h2 {
             font-size: 1.75rem;
@@ -229,6 +230,95 @@
 
         .cta-button:hover {
             background-color: var(--secondary);
+        }
+
+        /* External Tool Card */
+        .tool-card {
+            display: block;
+            background-color: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            margin: 2rem 0;
+        }
+
+        .tool-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .tool-card-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--primary);
+            background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80') center/cover;
+            opacity: 0.2;
+        }
+
+        .tool-card-image-text {
+            position: relative;
+            z-index: 1;
+            color: var(--primary-foreground);
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .tool-card-content {
+            padding: 1.5rem;
+        }
+
+        .tool-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--foreground);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tool-card-description {
+            color: var(--muted-foreground);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .tool-card-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover .tool-card-link::after {
+            transform: translateX(4px);
         }
 
         /* Footer */
@@ -341,19 +431,19 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="om-oss" class="nav-link">Om Oss</a>
-                <a href="nyheter" class="nav-link">Nyheter</a>
-                <a href="projekt" class="nav-link">Projekt</a>
-                <a href="kontakt" class="nav-link">Kontakt</a>
+                <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
+                <a href="stil2-nyheter.html" class="nav-link">Nyheter</a>
+                <a href="stil2-projekt.html" class="nav-link">Projekt</a>
+                <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="om-oss" class="nav-link">Om Oss</a>
-            <a href="nyheter" class="nav-link">Nyheter</a>
-            <a href="projekt" class="nav-link">Projekt</a>
-            <a href="kontakt" class="nav-link">Kontakt</a>
+            <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
+            <a href="stil2-nyheter.html" class="nav-link">Nyheter</a>
+            <a href="stil2-projekt.html" class="nav-link">Projekt</a>
+            <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
@@ -363,8 +453,8 @@
         <div class="page-header-background"></div>
         <div class="page-header-overlay"></div>
         <div class="page-header-content">
-            <h1>Lorem Ipsum</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+            <h1>Kommunkoll</h1>
+            <p>Bevakar kommuners hemsidor och meddelar när ett nytt protokoll finns tillgängligt.</p>
         </div>
     </header>
 
@@ -388,9 +478,24 @@
         </section>
 
         <section class="content-section">
+            <h2>Kommunkoll</h2>
+            <p>Kommunkoll är ett kraftfullt verktyg för journalister och medborgare som vill hålla koll på kommunala beslut i Sverige. Med Kommunkoll kan du enkelt söka och bevaka beslut från kommunfullmäktige och nämnder i alla Sveriges 290 kommuner.</p>
+            <a href="https://kommunkoll-1016152735068.europe-north2.run.app/" target="_blank" rel="noopener noreferrer" class="tool-card">
+                <div class="tool-card-image">
+                    <span class="tool-card-image-text">Kommunkoll</span>
+                </div>
+                <div class="tool-card-content">
+                    <h3 class="tool-card-title">Bevaka Kommunala Beslut</h3>
+                    <p class="tool-card-description">Sök bland protokoll, ärenden och beslut från kommunfullmäktige och nämnder i alla Sveriges 290 kommuner. Ett ovärderligt verktyg för grävande journalistik på lokal nivå.</p>
+                    <span class="tool-card-link">Öppna Kommunkoll</span>
+                </div>
+            </a>
+        </section>
+
+        <section class="content-section">
             <h2>Ansök Nu</h2>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            <a href="kontakt" class="cta-button">Kontakta Oss</a>
+            <a href="stil2-kontakt.html" class="cta-button">Kontakta Oss</a>
         </section>
     </main>
 
@@ -404,10 +509,10 @@
             <div class="footer-links">
                 <h4>Lorem Ipsum</h4>
                 <ul>
-                    <li><a href="om-oss">Om Oss</a></li>
-                    <li><a href="nyheter">Nyheter</a></li>
-                    <li><a href="projekt">Projekt</a></li>
-                    <li><a href="kontakt">Kontakt</a></li>
+                    <li><a href="stil2-omoss.html">Om Oss</a></li>
+                    <li><a href="stil2-nyheter.html">Nyheter</a></li>
+                    <li><a href="stil2-projekt.html">Projekt</a></li>
+                    <li><a href="stil2-kontakt.html">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">

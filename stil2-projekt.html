@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lorem Ipsum Dolor Sit Amet - REDAKTÖR</title>
-    <meta name="description" content="Consectetur adipiscing elit sed do eiusmod">
+    <title>Projekt - REDAKTÖR</title>
+    <meta name="description" content="Våra projekt och initiativ">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,6 +92,16 @@
             color: var(--primary-foreground);
         }
 
+        .nav-link.back-btn {
+            background-color: var(--tagline);
+            padding: 0.5rem 1.5rem;
+            color: var(--primary-foreground);
+        }
+
+        .nav-link.back-btn:hover {
+            background-color: hsl(0, 70%, 50%);
+        }
+
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -121,74 +131,103 @@
             display: none;
         }
 
-        /* Article Header */
-        .article-header {
+        /* Page Header */
+        .page-header {
             background-color: var(--primary);
             padding: 8rem 1.5rem 4rem;
+            text-align: center;
         }
 
-        .article-header-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .article-header h1 {
+        .page-header h1 {
             color: var(--primary-foreground);
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             animation: slideUp 0.8s ease-out forwards;
             opacity: 0;
         }
 
-        .article-meta {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.875rem;
+        .page-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
             animation: slideUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
         }
 
-        /* Article Content */
-        .article-content {
-            max-width: 900px;
+        /* Project Grid */
+        .project-section {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }
 
-        .article-body {
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
             animation: slideUp 0.6s ease-out forwards;
-            animation-delay: 0.3s;
             opacity: 0;
         }
 
-        .article-body p {
-            color: var(--muted-foreground);
-            font-size: 1.125rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+        .project-card:nth-child(1) { animation-delay: 0.2s; }
+        .project-card:nth-child(2) { animation-delay: 0.3s; }
+        .project-card:nth-child(3) { animation-delay: 0.4s; }
+        .project-card:nth-child(4) { animation-delay: 0.5s; }
+
+        .project-image {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.7s ease;
         }
 
-        .article-body h2 {
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(87, 35, 42, 0.7);
+            transition: background-color 0.3s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            background-color: rgba(87, 35, 42, 0.85);
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .project-title {
+            color: var(--primary-foreground);
             font-size: 1.75rem;
-            color: var(--foreground);
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 2rem;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: var(--secondary);
+        .project-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* Footer */
@@ -284,6 +323,10 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
             }
 
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
             .footer-container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -301,48 +344,66 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="om-oss" class="nav-link">Om Oss</a>
-                <a href="nyheter" class="nav-link active">Nyheter</a>
-                <a href="projekt" class="nav-link">Projekt</a>
-                <a href="kontakt" class="nav-link">Kontakt</a>
+                <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
+                <a href="stil2-nyheter.html" class="nav-link">Nyheter</a>
+                <a href="stil2-projekt.html" class="nav-link active">Projekt</a>
+                <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="om-oss" class="nav-link">Om Oss</a>
-            <a href="nyheter" class="nav-link active">Nyheter</a>
-            <a href="projekt" class="nav-link">Projekt</a>
-            <a href="kontakt" class="nav-link">Kontakt</a>
+            <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
+            <a href="stil2-nyheter.html" class="nav-link">Nyheter</a>
+            <a href="stil2-projekt.html" class="nav-link active">Projekt</a>
+            <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
 
-    <!-- Article Header -->
-    <header class="article-header">
-        <div class="article-header-content">
-            <h1>Lorem Ipsum Dolor Sit Amet</h1>
-            <p class="article-meta">15 November 2024</p>
-        </div>
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Projekt</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipiscing</p>
     </header>
 
-    <!-- Article Content -->
-    <main class="article-content">
-        <div class="article-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-            <h2>Dolor Sit Amet</h2>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-
-            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-
-            <a href="nyheter" class="back-link">← Tillbaka till Nyheter</a>
+    <!-- Project Grid -->
+    <section class="project-section">
+        <div class="project-grid">
+            <a href="#" class="project-card">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80')"></div>
+                <div class="project-overlay"></div>
+                <div class="project-content">
+                    <h2 class="project-title">Lorem Ipsum</h2>
+                    <p class="project-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+                </div>
+            </a>
+            <a href="#" class="project-card">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80')"></div>
+                <div class="project-overlay"></div>
+                <div class="project-content">
+                    <h2 class="project-title">Dolor Sit Amet</h2>
+                    <p class="project-desc">Tempor incididunt ut labore et dolore magna aliqua ut enim ad minim.</p>
+                </div>
+            </a>
+            <a href="#" class="project-card">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80')"></div>
+                <div class="project-overlay"></div>
+                <div class="project-content">
+                    <h2 class="project-title">Kommunkoll</h2>
+                    <p class="project-desc">Bevakar kommuners hemsidor och meddelar när ett nytt protokoll finns tillgängligt.</p>
+                </div>
+            </a>
+            <a href="#" class="project-card">
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80')"></div>
+                <div class="project-overlay"></div>
+                <div class="project-content">
+                    <h2 class="project-title">Adipiscing Nulla</h2>
+                    <p class="project-desc">Ex ea commodo consequat duis aute irure dolor in reprehenderit.</p>
+                </div>
+            </a>
         </div>
-    </main>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -354,10 +415,10 @@
             <div class="footer-links">
                 <h4>Lorem Ipsum</h4>
                 <ul>
-                    <li><a href="om-oss">Om Oss</a></li>
-                    <li><a href="nyheter">Nyheter</a></li>
-                    <li><a href="projekt">Projekt</a></li>
-                    <li><a href="kontakt">Kontakt</a></li>
+                    <li><a href="stil2-omoss.html">Om Oss</a></li>
+                    <li><a href="stil2-nyheter.html">Nyheter</a></li>
+                    <li><a href="stil2-projekt.html">Projekt</a></li>
+                    <li><a href="stil2-kontakt.html">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">
