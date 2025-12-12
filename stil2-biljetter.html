@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projekt - REDAKTÖR</title>
-    <meta name="description" content="Våra projekt och initiativ">
+    <title>Dolor Sit Amet - REDAKTÖR</title>
+    <meta name="description" content="Sed do eiusmod tempor incididunt ut labore">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,16 +92,6 @@
             color: var(--primary-foreground);
         }
 
-        .nav-link.back-btn {
-            background-color: var(--tagline);
-            padding: 0.5rem 1.5rem;
-            color: var(--primary-foreground);
-        }
-
-        .nav-link.back-btn:hover {
-            background-color: hsl(0, 70%, 50%);
-        }
-
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -133,9 +123,34 @@
 
         /* Page Header */
         .page-header {
-            background-color: var(--primary);
+            position: relative;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .page-header-background {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-header-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(87, 35, 42, 0.85);
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 8rem 1.5rem 4rem;
-            text-align: center;
+            width: 100%;
         }
 
         .page-header h1 {
@@ -149,85 +164,71 @@
 
         .page-header p {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             max-width: 600px;
-            margin: 0 auto;
             animation: slideUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
         }
 
-        /* Project Grid */
-        .project-section {
-            max-width: 1200px;
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }
 
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            text-decoration: none;
+        .content-section {
+            margin-bottom: 3rem;
             animation: slideUp 0.6s ease-out forwards;
             opacity: 0;
         }
 
-        .project-card:nth-child(1) { animation-delay: 0.2s; }
-        .project-card:nth-child(2) { animation-delay: 0.3s; }
-        .project-card:nth-child(3) { animation-delay: 0.4s; }
-        .project-card:nth-child(4) { animation-delay: 0.5s; }
+        .content-section:nth-child(1) { animation-delay: 0.2s; }
+        .content-section:nth-child(2) { animation-delay: 0.3s; }
+        .content-section:nth-child(3) { animation-delay: 0.4s; }
 
-        .project-image {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.7s ease;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(87, 35, 42, 0.7);
-            transition: background-color 0.3s ease;
-        }
-
-        .project-card:hover .project-overlay {
-            background-color: rgba(87, 35, 42, 0.85);
-        }
-
-        .project-content {
-            position: relative;
-            z-index: 10;
-            padding: 2rem;
-            min-height: 350px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .project-title {
-            color: var(--primary-foreground);
+        .content-section h2 {
             font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
+            color: var(--foreground);
+            margin-bottom: 1rem;
         }
 
-        .project-desc {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            line-height: 1.6;
+        .content-section p {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.875rem 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary);
         }
 
         /* Footer */
@@ -323,10 +324,6 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
             }
 
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
             .footer-container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -344,66 +341,58 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="om-oss" class="nav-link">Om Oss</a>
-                <a href="nyheter" class="nav-link">Nyheter</a>
-                <a href="projekt" class="nav-link active">Projekt</a>
-                <a href="kontakt" class="nav-link">Kontakt</a>
+                <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
+                <a href="stil2-nyheter.html" class="nav-link">Nyheter</a>
+                <a href="stil2-projekt.html" class="nav-link">Projekt</a>
+                <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="om-oss" class="nav-link">Om Oss</a>
-            <a href="nyheter" class="nav-link">Nyheter</a>
-            <a href="projekt" class="nav-link active">Projekt</a>
-            <a href="kontakt" class="nav-link">Kontakt</a>
+            <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
+            <a href="stil2-nyheter.html" class="nav-link">Nyheter</a>
+            <a href="stil2-projekt.html" class="nav-link">Projekt</a>
+            <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
 
     <!-- Page Header -->
     <header class="page-header">
-        <h1>Projekt</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing</p>
+        <div class="page-header-background"></div>
+        <div class="page-header-overlay"></div>
+        <div class="page-header-content">
+            <h1>Dolor Sit Amet</h1>
+            <p>Sed do eiusmod tempor incididunt ut labore</p>
+        </div>
     </header>
 
-    <!-- Project Grid -->
-    <section class="project-section">
-        <div class="project-grid">
-            <a href="#" class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80')"></div>
-                <div class="project-overlay"></div>
-                <div class="project-content">
-                    <h2 class="project-title">Lorem Ipsum</h2>
-                    <p class="project-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
-                </div>
-            </a>
-            <a href="#" class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80')"></div>
-                <div class="project-overlay"></div>
-                <div class="project-content">
-                    <h2 class="project-title">Dolor Sit Amet</h2>
-                    <p class="project-desc">Tempor incididunt ut labore et dolore magna aliqua ut enim ad minim.</p>
-                </div>
-            </a>
-            <a href="#" class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80')"></div>
-                <div class="project-overlay"></div>
-                <div class="project-content">
-                    <h2 class="project-title">Kommunkoll</h2>
-                    <p class="project-desc">Bevakar kommuners hemsidor och meddelar när ett nytt protokoll finns tillgängligt.</p>
-                </div>
-            </a>
-            <a href="#" class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80')"></div>
-                <div class="project-overlay"></div>
-                <div class="project-content">
-                    <h2 class="project-title">Adipiscing Nulla</h2>
-                    <p class="project-desc">Ex ea commodo consequat duis aute irure dolor in reprehenderit.</p>
-                </div>
-            </a>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="content-section">
+            <h2>Om Programmet</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Vad Ingår</h2>
+            <ul>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Consectetur adipiscing elit</li>
+                <li>Sed do eiusmod tempor incididunt</li>
+                <li>Ut labore et dolore magna aliqua</li>
+                <li>Ut enim ad minim veniam</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Ansök Nu</h2>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <a href="stil2-kontakt.html" class="cta-button">Kontakta Oss</a>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -415,10 +404,10 @@
             <div class="footer-links">
                 <h4>Lorem Ipsum</h4>
                 <ul>
-                    <li><a href="om-oss">Om Oss</a></li>
-                    <li><a href="nyheter">Nyheter</a></li>
-                    <li><a href="projekt">Projekt</a></li>
-                    <li><a href="kontakt">Kontakt</a></li>
+                    <li><a href="stil2-omoss.html">Om Oss</a></li>
+                    <li><a href="stil2-nyheter.html">Nyheter</a></li>
+                    <li><a href="stil2-projekt.html">Projekt</a></li>
+                    <li><a href="stil2-kontakt.html">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">
