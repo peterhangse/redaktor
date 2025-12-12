@@ -1,0 +1,16 @@
+# Enable URL rewriting
+RewriteEngine On
+
+# Set default charset to UTF-8
+AddDefaultCharset utf-8
+
+# Serve extensionless files as HTML
+<FilesMatch "^(om-oss|kontakt|nyheter|projekt|stipendier|biljetter|kurs|guldspaden|artikel-1|artikel-2|artikel-3|artikel-4)$">
+  ForceType text/html
+  Header set Content-Type "text/html; charset=utf-8"
+</FilesMatch>
+
+# Enable compression for better performance
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript
+</IfModule>
