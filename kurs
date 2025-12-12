@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nyheter - REDAKTÖR</title>
-    <meta name="description" content="Senaste nyheterna från REDAKTÖR">
+    <title>Kommunkoll - REDAKTÖR</title>
+    <meta name="description" content="Bevakar kommuners hemsidor och meddelar när ett nytt protokoll finns tillgängligt.">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,16 +92,6 @@
             color: var(--primary-foreground);
         }
 
-        .nav-link.back-btn {
-            background-color: var(--tagline);
-            padding: 0.5rem 1.5rem;
-            color: var(--primary-foreground);
-        }
-
-        .nav-link.back-btn:hover {
-            background-color: hsl(0, 70%, 50%);
-        }
-
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -133,9 +123,34 @@
 
         /* Page Header */
         .page-header {
-            background-color: var(--primary);
+            position: relative;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .page-header-background {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-header-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(87, 35, 42, 0.85);
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 8rem 1.5rem 4rem;
-            text-align: center;
+            width: 100%;
         }
 
         .page-header h1 {
@@ -149,74 +164,161 @@
 
         .page-header p {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 1.125rem;
+            font-size: 1.25rem;
             max-width: 600px;
-            margin: 0 auto;
             animation: slideUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
         }
 
-        /* News Grid */
-        .news-grid-section {
-            max-width: 1200px;
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }
 
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .news-card {
-            background-color: var(--background);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            text-decoration: none;
-            display: block;
+        .content-section {
+            margin-bottom: 3rem;
             animation: slideUp 0.6s ease-out forwards;
             opacity: 0;
         }
 
-        .news-card:nth-child(1) { animation-delay: 0.2s; }
-        .news-card:nth-child(2) { animation-delay: 0.25s; }
-        .news-card:nth-child(3) { animation-delay: 0.3s; }
-        .news-card:nth-child(4) { animation-delay: 0.35s; }
-        .news-card:nth-child(5) { animation-delay: 0.4s; }
-        .news-card:nth-child(6) { animation-delay: 0.45s; }
+        .content-section:nth-child(1) { animation-delay: 0.2s; }
+        .content-section:nth-child(2) { animation-delay: 0.3s; }
+        .content-section:nth-child(3) { animation-delay: 0.4s; }
+        .content-section:nth-child(4) { animation-delay: 0.5s; }
 
-        .news-card:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+        .content-section h2 {
+            font-size: 1.75rem;
+            color: var(--foreground);
+            margin-bottom: 1rem;
         }
 
-        .news-date {
-            font-size: 0.75rem;
+        .content-section p {
             color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .content-section ul {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.875rem 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary);
+        }
+
+        /* External Tool Card */
+        .tool-card {
+            display: block;
+            background-color: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            margin: 2rem 0;
+        }
+
+        .tool-card:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .tool-card-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--primary);
+            background-image: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80') center/cover;
+            opacity: 0.2;
+        }
+
+        .tool-card-image-text {
+            position: relative;
+            z-index: 1;
+            color: var(--primary-foreground);
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
         }
 
-        .news-card-title {
-            font-size: 1.25rem;
+        .tool-card-content {
+            padding: 1.5rem;
+        }
+
+        .tool-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--foreground);
-            margin-top: 0.5rem;
             margin-bottom: 0.75rem;
-            transition: color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .news-card:hover .news-card-title {
-            color: var(--primary);
-        }
-
-        .news-excerpt {
+        .tool-card-description {
             color: var(--muted-foreground);
-            font-size: 0.875rem;
+            font-size: 1rem;
             line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .tool-card-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover .tool-card-link::after {
+            transform: translateX(4px);
         }
 
         /* Footer */
@@ -295,12 +397,6 @@
         }
 
         /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -316,10 +412,6 @@
                 gap: 1rem;
                 padding: 1rem 1.5rem 1.5rem;
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
             }
 
             .footer-container {
@@ -339,64 +431,73 @@
         <div class="nav-container">
             <a href="index.html" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
-                <a href="stil2-nyheter.html" class="nav-link active">Nyheter</a>
-                <a href="stil2-projekt.html" class="nav-link">Projekt</a>
-                <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
+                <a href="om-oss" class="nav-link">Om Oss</a>
+                <a href="nyheter" class="nav-link">Nyheter</a>
+                <a href="projekt" class="nav-link">Projekt</a>
+                <a href="kontakt" class="nav-link">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="stil2-omoss.html" class="nav-link">Om Oss</a>
-            <a href="stil2-nyheter.html" class="nav-link active">Nyheter</a>
-            <a href="stil2-projekt.html" class="nav-link">Projekt</a>
-            <a href="stil2-kontakt.html" class="nav-link">Kontakt</a>
+            <a href="om-oss" class="nav-link">Om Oss</a>
+            <a href="nyheter" class="nav-link">Nyheter</a>
+            <a href="projekt" class="nav-link">Projekt</a>
+            <a href="kontakt" class="nav-link">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
 
     <!-- Page Header -->
     <header class="page-header">
-        <h1>Nyheter</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+        <div class="page-header-background"></div>
+        <div class="page-header-overlay"></div>
+        <div class="page-header-content">
+            <h1>Kommunkoll</h1>
+            <p>Bevakar kommuners hemsidor och meddelar när ett nytt protokoll finns tillgängligt.</p>
+        </div>
     </header>
 
-    <!-- News Grid -->
-    <section class="news-grid-section">
-        <div class="news-grid">
-            <a href="#" class="news-card">
-                <span class="news-date">15 Nov 2024</span>
-                <h3 class="news-card-title">Lorem Ipsum Dolor Sit Amet</h3>
-                <p class="news-excerpt">Consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="content-section">
+            <h2>Om Programmet</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Vad Ingår</h2>
+            <ul>
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Consectetur adipiscing elit</li>
+                <li>Sed do eiusmod tempor incididunt</li>
+                <li>Ut labore et dolore magna aliqua</li>
+                <li>Ut enim ad minim veniam</li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2>Kommunkoll</h2>
+            <p>Kommunkoll är ett kraftfullt verktyg för journalister och medborgare som vill hålla koll på kommunala beslut i Sverige. Med Kommunkoll kan du enkelt söka och bevaka beslut från kommunfullmäktige och nämnder i alla Sveriges 290 kommuner.</p>
+            <a href="https://kommunkoll-1016152735068.europe-north2.run.app/" target="_blank" rel="noopener noreferrer" class="tool-card">
+                <div class="tool-card-image">
+                    <span class="tool-card-image-text">Kommunkoll</span>
+                </div>
+                <div class="tool-card-content">
+                    <h3 class="tool-card-title">Bevaka Kommunala Beslut</h3>
+                    <p class="tool-card-description">Sök bland protokoll, ärenden och beslut från kommunfullmäktige och nämnder i alla Sveriges 290 kommuner. Ett ovärderligt verktyg för grävande journalistik på lokal nivå.</p>
+                    <span class="tool-card-link">Öppna Kommunkoll</span>
+                </div>
             </a>
-            <a href="#" class="news-card">
-                <span class="news-date">12 Nov 2024</span>
-                <h3 class="news-card-title">Tempor Incididunt Ut Labore</h3>
-                <p class="news-excerpt">Et dolore magna aliqua ut enim ad minim veniam.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">8 Nov 2024</span>
-                <h3 class="news-card-title">Quis Nostrud Exercitation</h3>
-                <p class="news-excerpt">Ullamco laboris nisi ut aliquip ex ea commodo.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">1 Nov 2024</span>
-                <h3 class="news-card-title">Duis Aute Irure Dolor</h3>
-                <p class="news-excerpt">In reprehenderit in voluptate velit esse cillum dolore.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">28 Okt 2024</span>
-                <h3 class="news-card-title">Excepteur Sint Occaecat</h3>
-                <p class="news-excerpt">Cupidatat non proident sunt in culpa qui officia.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">20 Okt 2024</span>
-                <h3 class="news-card-title">Deserunt Mollit Anim</h3>
-                <p class="news-excerpt">Id est laborum sed ut perspiciatis unde omnis.</p>
-            </a>
-        </div>
-    </section>
+        </section>
+
+        <section class="content-section">
+            <h2>Ansök Nu</h2>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <a href="kontakt" class="cta-button">Kontakta Oss</a>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -408,10 +509,10 @@
             <div class="footer-links">
                 <h4>Lorem Ipsum</h4>
                 <ul>
-                    <li><a href="stil2-omoss.html">Om Oss</a></li>
-                    <li><a href="stil2-nyheter.html">Nyheter</a></li>
-                    <li><a href="stil2-projekt.html">Projekt</a></li>
-                    <li><a href="stil2-kontakt.html">Kontakt</a></li>
+                    <li><a href="om-oss">Om Oss</a></li>
+                    <li><a href="nyheter">Nyheter</a></li>
+                    <li><a href="projekt">Projekt</a></li>
+                    <li><a href="kontakt">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">
