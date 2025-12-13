@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verktyg - REDAKTÖR</title>
-    <meta name="description" content="Våra verktyg och initiativ">
+    <title>Samarbetspartners - REDAKTÖR</title>
+    <meta name="description" content="Våra samarbetspartners och partners">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,16 +92,6 @@
             color: var(--primary-foreground);
         }
 
-        .nav-link.back-btn {
-            background-color: var(--tagline);
-            padding: 0.5rem 1.5rem;
-            color: var(--primary-foreground);
-        }
-
-        .nav-link.back-btn:hover {
-            background-color: hsl(0, 70%, 50%);
-        }
-
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -131,103 +121,120 @@
             display: none;
         }
 
-        /* Page Header */
-        .page-header {
+        /* Article Header */
+        .article-header {
             background-color: var(--primary);
             padding: 8rem 1.5rem 4rem;
-            text-align: center;
         }
 
-        .page-header h1 {
+        .article-header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .article-tagline {
+            color: var(--tagline);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .article-header h1 {
             color: var(--primary-foreground);
             font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             animation: slideUp 0.8s ease-out forwards;
-            opacity: 0;
-        }
-
-        .page-header p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
-            animation: slideUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
         }
 
-        /* Project Grid */
-        .project-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            text-decoration: none;
-            animation: slideUp 0.6s ease-out forwards;
+        .article-meta {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            animation: slideUp 0.8s ease-out forwards;
+            animation-delay: 0.4s;
             opacity: 0;
         }
 
-        .project-card:nth-child(1) { animation-delay: 0.2s; }
-        .project-card:nth-child(2) { animation-delay: 0.3s; }
-        .project-card:nth-child(3) { animation-delay: 0.4s; }
-        .project-card:nth-child(4) { animation-delay: 0.5s; }
-
-        .project-image {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            transition: transform 0.7s ease;
+        /* Featured Image */
+        .featured-image-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            transform: translateY(-3rem);
         }
 
-        .project-card:hover .project-image {
-            transform: scale(1.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(87, 35, 42, 0.7);
-            transition: background-color 0.3s ease;
-        }
-
-        .project-card:hover .project-overlay {
-            background-color: rgba(87, 35, 42, 0.85);
-        }
-
-        .project-content {
+        .featured-image-wrapper {
             position: relative;
-            z-index: 10;
-            padding: 2rem;
-            min-height: 350px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.3s;
+            opacity: 0;
         }
 
-        .project-title {
-            color: var(--primary-foreground);
+        .featured-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-credit {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.75rem;
+            color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 0.25rem 0.5rem;
+        }
+
+        /* Article Content */
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .article-body {
+            animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .article-body p {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body h2 {
             font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
+            color: var(--foreground);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        .project-desc {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            line-height: 1.6;
+        .article-body ul {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-body li {
+            margin-bottom: 0.5rem;
         }
 
         /* Footer */
@@ -323,10 +330,6 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
             }
 
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
             .footer-container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -345,7 +348,7 @@
             <a href="/" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
                 <a href="/om-oss/" class="nav-link">Om Oss</a>
-                <a href="/verktyg/" class="nav-link active">Verktyg</a>
+                <a href="/verktyg/" class="nav-link">Verktyg</a>
                 <a href="/nyheter/" class="nav-link">Nyheter</a>
                 <a href="/kontakt/" class="nav-link">Kontakt</a>
                 <a href="/prenumerera/" class="nav-cta">Prenumerera</a>
@@ -354,47 +357,65 @@
         </div>
         <div class="mobile-nav" id="mobileNav">
             <a href="/om-oss/" class="nav-link">Om Oss</a>
-            <a href="/verktyg/" class="nav-link active">Verktyg</a>
+            <a href="/verktyg/" class="nav-link">Verktyg</a>
             <a href="/nyheter/" class="nav-link">Nyheter</a>
             <a href="/kontakt/" class="nav-link">Kontakt</a>
             <a href="/prenumerera/" class="nav-cta">Prenumerera</a>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <header class="page-header">
-        <h1>Verktyg</h1>
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header-content">
+            <span class="article-tagline">Tillsammans starkare</span>
+            <h1>Samarbetspartners</h1>
+            <p class="article-meta">Våra partners i grävande journalistik</p>
+        </div>
     </header>
 
-    <!-- Project Grid -->
-    <section class="project-section">
-        <div class="project-grid">
-            <a href="/kommunkoll/" class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80')"></div>
-                <div class="project-overlay"></div>
-                <div class="project-content">
-                    <h2 class="project-title">Kommunkoll</h2>
-                    <p class="project-desc">Bevakar kommuners hemsidor och meddelar när ett nytt protokoll finns tillgängligt.</p>
-                </div>
-            </a>
-            <a href="/rattstavaren/" class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80')"></div>
-                <div class="project-overlay"></div>
-                <div class="project-content">
-                    <h2 class="project-title">Rättstavaren</h2>
-                    <p class="project-desc">Redaktionell rättstavare som läser publicerade artiklar (kommer snart)</p>
-                </div>
-            </a>
-            <a href="/din-ide/" class="project-card">
-                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80')"></div>
-                <div class="project-overlay"></div>
-                <div class="project-content">
-                    <h2 class="project-title">Din idé</h2>
-                    <p class="project-desc">Har du ett förslag på ett verktyg? Låt oss bygga det tillsammans!</p>
-                </div>
-            </a>
+    <!-- Featured Image -->
+    <section class="featured-image-section">
+        <div class="featured-image-wrapper">
+            <div class="featured-image">
+                <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=80" alt="Samarbetspartners och nätverk">
+            </div>
+            <span class="featured-credit">Foto: Unsplash</span>
         </div>
     </section>
+
+    <!-- Article Content -->
+    <main class="article-content">
+        <div class="article-body">
+            <p>REDAKTÖR arbetar aktivt med att bygga ett starkt nätverk av samarbetspartners inom grävande journalistik. Tillsammans kan vi göra skillnad och stärka demokratin genom att belysa viktiga samhällsfrågor.</p>
+
+            <h2>Våra Samarbetspartners</h2>
+            <p>Vi samarbetar med flera organisationer och institutioner som delar vår vision om att stödja grävande journalistik och främja transparens i samhället.</p>
+
+            <ul>
+                <li><strong>Journalistförbunden:</strong> Samarbete kring utbildning och verktyg för journalister</li>
+                <li><strong>Mediehus:</strong> Partnerskap med etablerade mediehus för att främja grävande journalistik</li>
+                <li><strong>Forskningsinstitut:</strong> Akademiskt samarbete för att utveckla nya metoder och verktyg</li>
+                <li><strong>Civilsamhället:</strong> Samarbete med organisationer som arbetar för transparens och öppenhet</li>
+            </ul>
+
+            <h2>Bli en Partner</h2>
+            <p>Är du intresserad av att samarbeta med REDAKTÖR? Vi välkomnar samarbeten som kan stärka grävande journalistik och bidra till ett mer transparent samhälle.</p>
+
+            <p>Kontakta oss via vår <a href="/kontakt/" style="color: var(--primary); text-decoration: underline;">kontaktsida</a> för att diskutera möjliga samarbeten. Vi är särskilt intresserade av partnerskap inom följande områden:</p>
+
+            <ul>
+                <li>Utveckling av journalistiska verktyg och metoder</li>
+                <li>Utbildning och kompetensutveckling för journalister</li>
+                <li>Forskning och innovation inom datajournalistik</li>
+                <li>Finansiering och stöd för grävande projekt</li>
+            </ul>
+
+            <h2>Gemensamma Projekt</h2>
+            <p>Tillsammans med våra partners arbetar vi med flera spännande projekt som syftar till att stärka grävande journalistik i Sverige. Genom samarbete kan vi utveckla bättre verktyg, nå fler journalister och ha större genomslag i samhället.</p>
+
+            <p>Våra partnerskap bygger på ömsesidig respekt, delad vision och en gemensam strävan efter kvalitetsjournalistik som granskar makten och stärker demokratin.</p>
+        </div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">

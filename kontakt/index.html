@@ -273,6 +273,25 @@
             background-color: var(--secondary);
         }
 
+        .form-message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
         /* Footer */
         .footer {
             background-color: var(--primary);
@@ -429,7 +448,7 @@
 
         <div class="contact-form">
             <h2>Skicka ett meddelande</h2>
-            <form action="https://formspree.io/f/xdkqbpdl" method="POST">
+            <form id="contactForm" action="https://formspree.io/f/xdkqbpdl" method="POST">
                 <div class="form-group">
                     <label for="name">Ditt namn:</label>
                     <input type="text" id="name" name="name" required>
@@ -443,6 +462,7 @@
                     <textarea id="message" name="message" required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">Skicka</button>
+                <div id="formMessage" class="form-message"></div>
             </form>
         </div>
     </section>
@@ -474,6 +494,45 @@
             const mobileNav = document.getElementById('mobileNav');
             mobileNav.classList.toggle('active');
         }
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formMessage = document.getElementById('formMessage');
+            const submitBtn = this.querySelector('.submit-btn');
+            const formData = new FormData(this);
+
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Skickar...';
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    formMessage.textContent = 'Tack för ditt meddelande! Vi hör av oss så snart som möjligt.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                formMessage.textContent = 'Ett fel uppstod. Vänligen försök igen senare.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Skicka';
+            });
+        });
     </script>
 </body>
 </html>
