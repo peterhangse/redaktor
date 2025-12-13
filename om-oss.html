@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veniam Quis Nostrud - REDAKTÖR</title>
-    <meta name="description" content="Exercitation ullamco laboris nisi ut aliquip">
+    <title>Om Oss - REDAKTÖR</title>
+    <meta name="description" content="Lär känna REDAKTÖR och vår historia">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,6 +92,16 @@
             color: var(--primary-foreground);
         }
 
+        .nav-link.back-btn {
+            background-color: var(--tagline);
+            padding: 0.5rem 1.5rem;
+            color: var(--primary-foreground);
+        }
+
+        .nav-link.back-btn:hover {
+            background-color: hsl(0, 70%, 50%);
+        }
+
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -121,74 +131,70 @@
             display: none;
         }
 
-        /* Article Header */
-        .article-header {
+        /* Page Header */
+        .page-header {
             background-color: var(--primary);
             padding: 8rem 1.5rem 4rem;
+            text-align: center;
         }
 
-        .article-header-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .article-header h1 {
+        .page-header h1 {
             color: var(--primary-foreground);
-            font-size: clamp(2rem, 6vw, 3rem);
+            font-size: clamp(2rem, 6vw, 3.5rem);
             font-weight: 700;
             margin-bottom: 1rem;
             animation: slideUp 0.8s ease-out forwards;
             opacity: 0;
         }
 
-        .article-meta {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.875rem;
+        .page-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
             animation: slideUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
         }
 
-        /* Article Content */
-        .article-content {
+        /* Main Content */
+        .main-content {
             max-width: 900px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }
 
-        .article-body {
+        .content-section {
+            margin-bottom: 3rem;
             animation: slideUp 0.6s ease-out forwards;
-            animation-delay: 0.3s;
             opacity: 0;
         }
 
-        .article-body p {
-            color: var(--muted-foreground);
-            font-size: 1.125rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
+        .content-section:nth-child(1) { animation-delay: 0.2s; }
+        .content-section:nth-child(2) { animation-delay: 0.3s; }
+        .content-section:nth-child(3) { animation-delay: 0.4s; }
 
-        .article-body h2 {
+        .content-section h2 {
             font-size: 1.75rem;
             color: var(--foreground);
-            margin-top: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+        .content-section p {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .content-section a {
             color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            margin-top: 2rem;
+            text-decoration: underline;
             transition: color 0.3s ease;
         }
 
-        .back-link:hover {
-            color: var(--secondary);
+        .content-section a:hover {
+            color: var(--accent);
         }
 
         /* Footer */
@@ -301,47 +307,45 @@
         <div class="nav-container">
             <a href="/" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="/om-oss" class="nav-link">Om Oss</a>
-                <a href="/nyheter" class="nav-link active">Nyheter</a>
-                <a href="/projekt" class="nav-link">Projekt</a>
-                <a href="/kontakt" class="nav-link">Kontakt</a>
+                <a href="/om-oss.html" class="nav-link active">Om Oss</a>
+                <a href="/nyheter.html" class="nav-link">Nyheter</a>
+                <a href="/projekt.html" class="nav-link">Projekt</a>
+                <a href="/kontakt.html" class="nav-link">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="/om-oss" class="nav-link">Om Oss</a>
-            <a href="/nyheter" class="nav-link active">Nyheter</a>
-            <a href="/projekt" class="nav-link">Projekt</a>
-            <a href="/kontakt" class="nav-link">Kontakt</a>
+            <a href="/om-oss.html" class="nav-link active">Om Oss</a>
+            <a href="/nyheter.html" class="nav-link">Nyheter</a>
+            <a href="/projekt.html" class="nav-link">Projekt</a>
+            <a href="/kontakt.html" class="nav-link">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
 
-    <!-- Article Header -->
-    <header class="article-header">
-        <div class="article-header-content">
-            <h1>Veniam Quis Nostrud</h1>
-            <p class="article-meta">8 November 2024</p>
-        </div>
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Om Oss</h1>
     </header>
 
-    <!-- Article Content -->
-    <main class="article-content">
-        <div class="article-body">
-            <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="content-section">
+            <h2>Nystartat</h2>
+            <p>Idén till redaktör.se föddes under kursen <a href="https://fojo.se/kurser/avancerad-ai-for-vanliga-journalister/" target="_blank" rel="noopener noreferrer">"Avancerad AI för vanliga journalister"</a>.</p>
+            <p>Bakom hemsidan står lokaljournalisten Peter Hang som jobbat de senaste åren på olika delar av Gota Media (BT, Nattbyrån, BLT).</p>
+        </section>
 
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <section class="content-section">
+            <h2>Så fungerar det</h2>
+            <p>I nuläget drivs sajten på ideell basis och via molntjänster från Google. På sikt är målet att bygga en fysisk dataserver där verktygen kan tillhandahållas ifrån.</p>
+        </section>
 
-            <h2>Excepteur Sint Occaecat</h2>
-            <p>Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-
-            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-
-            <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-
-            <a href="/nyheter" class="back-link">← Tillbaka till Nyheter</a>
-        </div>
+        <section class="content-section">
+            <h2>Häng med!</h2>
+            <p>Målet med redaktör.se är att skapa en plattform för att dela verktyg som kan bidra till granskande journalistik. Har du ett program du vill lägga upp på redaktör.se? <a href="/kontakt.html">Kontakta oss!</a></p>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -349,27 +353,26 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3>REDAKTÖR</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Program som ger den grävande journalisten fler verktyg i verktygslådan</p>
             </div>
             <div class="footer-links">
-                <h4>Lorem Ipsum</h4>
+                <h4>LOREM IPSUM</h4>
                 <ul>
-                    <li><a href="/om-oss">Om Oss</a></li>
-                    <li><a href="/nyheter">Nyheter</a></li>
-                    <li><a href="/projekt">Projekt</a></li>
-                    <li><a href="/kontakt">Kontakt</a></li>
+                    <li><a href="/om-oss.html">Om Oss</a></li>
+                    <li><a href="/nyheter.html">Nyheter</a></li>
+                    <li><a href="/projekt.html">Projekt</a></li>
+                    <li><a href="/kontakt.html">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h4>Kontakt</h4>
                 <ul>
-                    <li>lorem@ipsum.com</li>
-                    <li>Lorem, Ipsum</li>
+                    <li>peterdouglashang@gmail.com</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 REDAKTÖR. Lorem ipsum dolor sit amet.</p>
+            <p>© 2026 REDAKTÖR. Den grävande journalistens verktygslåda.</p>
         </div>
     </footer>
 
