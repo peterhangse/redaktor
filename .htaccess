@@ -1,3 +1,7 @@
+# NOTE: This .htaccess file is for Apache servers only.
+# GitHub Pages does not support .htaccess files.
+# For GitHub Pages, physical files without extensions are used instead (om-oss, kontakt, etc.)
+
 RewriteEngine On
 RewriteBase /
 
