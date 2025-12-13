@@ -2,6 +2,7 @@
 
 # Smoke test script for REDAKTÖR website URLs
 # Tests that all folder-based clean URLs work correctly
+set -u  # Treat unset variables as errors (but not -e to allow failures)
 
 echo "==================== REDAKTÖR URL Smoke Test ===================="
 echo ""
@@ -48,7 +49,7 @@ failed=0
 # Test each URL
 for url in "${urls[@]}"; do
     full_url="${BASE_URL}${url}"
-    status_code=$(curl -s -o /dev/null -w "%{http_code}" "$full_url" 2>/dev/null)
+    status_code=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 10 --max-time 30 "$full_url" 2>/dev/null || echo "000")
     
     if [ "$status_code" = "200" ]; then
         echo -e "${GREEN}✓${NC} $url - OK (200)"
