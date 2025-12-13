@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nyheter - REDAKTÖR</title>
-    <meta name="description" content="Senaste nyheterna från REDAKTÖR">
+    <title>Lorem Ipsum Dolor Sit Amet - REDAKTÖR</title>
+    <meta name="description" content="Consectetur adipiscing elit sed do eiusmod">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,16 +92,6 @@
             color: var(--primary-foreground);
         }
 
-        .nav-link.back-btn {
-            background-color: var(--tagline);
-            padding: 0.5rem 1.5rem;
-            color: var(--primary-foreground);
-        }
-
-        .nav-link.back-btn:hover {
-            background-color: hsl(0, 70%, 50%);
-        }
-
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -131,92 +121,74 @@
             display: none;
         }
 
-        /* Page Header */
-        .page-header {
+        /* Article Header */
+        .article-header {
             background-color: var(--primary);
             padding: 8rem 1.5rem 4rem;
-            text-align: center;
         }
 
-        .page-header h1 {
+        .article-header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .article-header h1 {
             color: var(--primary-foreground);
-            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 700;
             margin-bottom: 1rem;
             animation: slideUp 0.8s ease-out forwards;
             opacity: 0;
         }
 
-        .page-header p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
+        .article-meta {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
             animation: slideUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
         }
 
-        /* News Grid */
-        .news-grid-section {
-            max-width: 1200px;
+        /* Article Content */
+        .article-content {
+            max-width: 900px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
         }
 
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .news-card {
-            background-color: var(--background);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            text-decoration: none;
-            display: block;
+        .article-body {
             animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.3s;
             opacity: 0;
         }
 
-        .news-card:nth-child(1) { animation-delay: 0.2s; }
-        .news-card:nth-child(2) { animation-delay: 0.25s; }
-        .news-card:nth-child(3) { animation-delay: 0.3s; }
-        .news-card:nth-child(4) { animation-delay: 0.35s; }
-        .news-card:nth-child(5) { animation-delay: 0.4s; }
-        .news-card:nth-child(6) { animation-delay: 0.45s; }
-
-        .news-card:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .news-date {
-            font-size: 0.75rem;
+        .article-body p {
             color: var(--muted-foreground);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
         }
 
-        .news-card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
+        .article-body h2 {
+            font-size: 1.75rem;
             color: var(--foreground);
-            margin-top: 0.5rem;
-            margin-bottom: 0.75rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 2rem;
             transition: color 0.3s ease;
         }
 
-        .news-card:hover .news-card-title {
-            color: var(--primary);
-        }
-
-        .news-excerpt {
-            color: var(--muted-foreground);
-            font-size: 0.875rem;
-            line-height: 1.6;
+        .back-link:hover {
+            color: var(--secondary);
         }
 
         /* Footer */
@@ -295,12 +267,6 @@
         }
 
         /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -316,10 +282,6 @@
                 gap: 1rem;
                 padding: 1rem 1.5rem 1.5rem;
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
             }
 
             .footer-container {
@@ -339,64 +301,48 @@
         <div class="nav-container">
             <a href="/" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="/om-oss.html" class="nav-link">Om Oss</a>
-                <a href="/nyheter.html" class="nav-link active">Nyheter</a>
-                <a href="/projekt.html" class="nav-link">Projekt</a>
-                <a href="/kontakt.html" class="nav-link">Kontakt</a>
+                <a href="/om-oss/" class="nav-link">Om Oss</a>
+                <a href="/nyheter/" class="nav-link active">Nyheter</a>
+                <a href="/projekt/" class="nav-link">Projekt</a>
+                <a href="/kontakt/" class="nav-link">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="/om-oss.html" class="nav-link">Om Oss</a>
-            <a href="/nyheter.html" class="nav-link active">Nyheter</a>
-            <a href="/projekt.html" class="nav-link">Projekt</a>
-            <a href="/kontakt.html" class="nav-link">Kontakt</a>
+            <a href="/om-oss/" class="nav-link">Om Oss</a>
+            <a href="/nyheter/" class="nav-link active">Nyheter</a>
+            <a href="/projekt/" class="nav-link">Projekt</a>
+            <a href="/kontakt/" class="nav-link">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <header class="page-header">
-        <h1>Nyheter</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit</p>
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header-content">
+            <h1>Lorem Ipsum Dolor Sit Amet</h1>
+            <p class="article-meta">15 November 2024</p>
+        </div>
     </header>
 
-    <!-- News Grid -->
-    <section class="news-grid-section">
-        <div class="news-grid">
-            <a href="#" class="news-card">
-                <span class="news-date">15 Nov 2024</span>
-                <h3 class="news-card-title">Lorem Ipsum Dolor Sit Amet</h3>
-                <p class="news-excerpt">Consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">12 Nov 2024</span>
-                <h3 class="news-card-title">Tempor Incididunt Ut Labore</h3>
-                <p class="news-excerpt">Et dolore magna aliqua ut enim ad minim veniam.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">8 Nov 2024</span>
-                <h3 class="news-card-title">Quis Nostrud Exercitation</h3>
-                <p class="news-excerpt">Ullamco laboris nisi ut aliquip ex ea commodo.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">1 Nov 2024</span>
-                <h3 class="news-card-title">Duis Aute Irure Dolor</h3>
-                <p class="news-excerpt">In reprehenderit in voluptate velit esse cillum dolore.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">28 Okt 2024</span>
-                <h3 class="news-card-title">Excepteur Sint Occaecat</h3>
-                <p class="news-excerpt">Cupidatat non proident sunt in culpa qui officia.</p>
-            </a>
-            <a href="#" class="news-card">
-                <span class="news-date">20 Okt 2024</span>
-                <h3 class="news-card-title">Deserunt Mollit Anim</h3>
-                <p class="news-excerpt">Id est laborum sed ut perspiciatis unde omnis.</p>
-            </a>
+    <!-- Article Content -->
+    <main class="article-content">
+        <div class="article-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <h2>Dolor Sit Amet</h2>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+
+            <a href="/nyheter/" class="back-link">← Tillbaka till Nyheter</a>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -408,10 +354,10 @@
             <div class="footer-links">
                 <h4>LOREM IPSUM</h4>
                 <ul>
-                    <li><a href="/om-oss.html">Om Oss</a></li>
-                    <li><a href="/nyheter.html">Nyheter</a></li>
-                    <li><a href="/projekt.html">Projekt</a></li>
-                    <li><a href="/kontakt.html">Kontakt</a></li>
+                    <li><a href="/om-oss/">Om Oss</a></li>
+                    <li><a href="/nyheter/">Nyheter</a></li>
+                    <li><a href="/projekt/">Projekt</a></li>
+                    <li><a href="/kontakt/">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">
