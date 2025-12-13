@@ -7,35 +7,33 @@ The newsletter subscription page (`/prenumerera/`) has been implemented with:
 - Collapsible GDPR and privacy policy section
 - Form handling using Formspree
 
-## Formspree Setup Instructions
+## Formspree Integration Status
 
-To enable email collection for the newsletter, you need to configure Formspree:
+✅ **The Formspree integration is now active!**
 
-### Step 1: Create a Formspree Account
-1. Go to [Formspree.io](https://formspree.io/)
-2. Sign up for a free account (supports up to 50 submissions/month on free tier)
+The subscription form is configured with the Formspree endpoint:
+- Form endpoint: `https://formspree.io/f/xovgrkov`
+- Method: POST
+- Email field: `name="email"`
+- Name field: `name="name"`
 
-### Step 2: Create a New Form
-1. After logging in, click "New Form"
-2. Give it a name like "REDAKTÖR Newsletter Subscription"
-3. Copy the form endpoint URL (it will look like `https://formspree.io/f/xxxxxxxx`)
+The form is ready to accept newsletter subscriptions.
 
-### Step 3: Update the Form Action
-1. Open `/prenumerera/index.html`
-2. Find the line with `action="https://formspree.io/f/YOUR_FORM_ID"`
-3. Replace `YOUR_FORM_ID` with your actual Formspree form ID
+## Formspree Dashboard
 
-Example:
-```html
-<form id="subscribeForm" action="https://formspree.io/f/mrbgabcd" method="POST">
-```
-
-### Step 4: Configure Formspree Settings (Optional)
-In your Formspree dashboard, you can:
+To manage your newsletter subscriptions, visit your Formspree dashboard at [formspree.io](https://formspree.io/) where you can:
+- View all form submissions
+- Export email addresses as CSV
 - Set up email notifications when someone subscribes
 - Configure auto-response emails to subscribers
-- Export submissions as CSV
 - Set up integrations with other services (e.g., Mailchimp)
+
+## Managing Subscriptions
+
+To effectively manage your newsletter subscriptions:
+- Log in to your Formspree dashboard regularly
+- Export submissions as CSV
+- Import email addresses into your preferred email marketing platform
 
 ## Alternative Solutions
 
