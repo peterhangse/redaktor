@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenumerera - REDAKTÖR</title>
+    <meta name="description" content="Prenumerera på REDAKTÖR:s nyhetsbrev">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background: #fff;
+            --foreground: #1a1a1a;
+            --primary: hsl(345, 63%, 30%);
+            --primary-foreground: #fff;
+            --secondary: hsl(345, 63%, 25%);
+            --muted: hsl(345, 20%, 90%);
+            --muted-foreground: hsl(345, 10%, 40%);
+            --accent: hsl(345, 63%, 35%);
+            --tagline: hsl(0, 70%, 55%);
+            --hero-overlay: hsl(345, 63%, 20%);
+            --border: hsl(345, 20%, 85%);
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Source Sans 3', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background-color: rgba(114, 47, 55, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            color: var(--primary-foreground);
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-foreground);
+        }
+
+        .nav-link.back-btn {
+            background-color: var(--tagline);
+            padding: 0.5rem 1.5rem;
+            color: var(--primary-foreground);
+        }
+
+        .nav-link.back-btn:hover {
+            background-color: hsl(0, 70%, 50%);
+        }
+
+        .nav-cta {
+            background-color: var(--tagline);
+            color: var(--primary-foreground);
+            padding: 0.5rem 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background-color: hsl(0, 70%, 50%);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-foreground);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+        }
+
+        /* Page Header */
+        .page-header {
+            background-color: var(--primary);
+            padding: 8rem 1.5rem 4rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--primary-foreground);
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            animation: slideUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .page-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: slideUp 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        /* Subscribe Section */
+        .subscribe-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .subscribe-info {
+            margin-bottom: 3rem;
+            animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .subscribe-info h2 {
+            font-size: 1.75rem;
+            color: var(--foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .subscribe-info p {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .subscribe-info ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .subscribe-info ul li {
+            color: var(--muted-foreground);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Subscribe Form */
+        .subscribe-form {
+            background-color: var(--muted);
+            padding: 2rem;
+            border-radius: 8px;
+            animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .subscribe-form h2 {
+            font-size: 1.5rem;
+            color: var(--foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background-color: var(--background);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.875rem 2rem;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        /* GDPR Section */
+        .gdpr-section {
+            margin-top: 3rem;
+            animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        .gdpr-toggle {
+            background-color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .gdpr-toggle:hover {
+            background-color: hsl(345, 20%, 85%);
+        }
+
+        .gdpr-toggle h3 {
+            font-size: 1.25rem;
+            color: var(--foreground);
+        }
+
+        .gdpr-toggle .icon {
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .gdpr-toggle.active .icon {
+            transform: rotate(180deg);
+        }
+
+        .gdpr-content {
+            border: 1px solid var(--border);
+            border-top: none;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+        }
+
+        .gdpr-content.active {
+            max-height: 2000px;
+            padding: 1.5rem;
+        }
+
+        .gdpr-content h4 {
+            font-size: 1.125rem;
+            color: var(--foreground);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .gdpr-content h4:first-child {
+            margin-top: 0;
+        }
+
+        .gdpr-content p {
+            color: var(--muted-foreground);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .gdpr-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .gdpr-content ul li {
+            color: var(--muted-foreground);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 4rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-foreground);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .mobile-nav.active {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 1.5rem 1.5rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">REDAKTÖR</a>
+            <div class="nav-links">
+                <a href="/om-oss/" class="nav-link">Om Oss</a>
+                <a href="/verktyg/" class="nav-link">Verktyg</a>
+                <a href="/nyheter/" class="nav-link">Nyheter</a>
+                <a href="/kontakt/" class="nav-link">Kontakt</a>
+                <a href="/prenumerera/" class="nav-cta active">Prenumerera</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="/om-oss/" class="nav-link">Om Oss</a>
+            <a href="/verktyg/" class="nav-link">Verktyg</a>
+            <a href="/nyheter/" class="nav-link">Nyheter</a>
+            <a href="/kontakt/" class="nav-link">Kontakt</a>
+            <a href="/prenumerera/" class="nav-cta active">Prenumerera</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Prenumerera på vårt nyhetsbrev</h1>
+        <p>Håll dig uppdaterad med de senaste nyheterna från REDAKTÖR</p>
+    </header>
+
+    <!-- Subscribe Section -->
+    <section class="subscribe-section">
+        <div class="subscribe-info">
+            <h2>Vad innebär en prenumeration?</h2>
+            <p>Genom att prenumerera på REDAKTÖR:s nyhetsbrev får du tillgång till:</p>
+            <ul>
+                <li>De senaste nyheterna om grävande journalistik och REDAKTÖR:s verktyg</li>
+                <li>Exklusiva tips och tekniker för undersökande journalistik</li>
+                <li>Information om kommande kurser, evenemang och workshops</li>
+                <li>Uppdateringar om nya funktioner och verktyg i REDAKTÖR-plattformen</li>
+                <li>Insikter från erfarna grävande journalister</li>
+            </ul>
+            <p>Vårt nyhetsbrev skickas ut ungefär en gång i månaden, och du kan avsluta din prenumeration när som helst.</p>
+        </div>
+
+        <div class="subscribe-form">
+            <h2>Anmäl dig till nyhetsbrevet</h2>
+            <form id="subscribeForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label for="email">E-postadress *</label>
+                    <input type="email" id="email" name="email" required placeholder="din@epost.se">
+                </div>
+                <div class="form-group">
+                    <label for="name">Namn (valfritt)</label>
+                    <input type="text" id="name" name="name" placeholder="Ditt namn">
+                </div>
+                <button type="submit" class="submit-btn">Prenumerera</button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+
+        <!-- GDPR Section -->
+        <div class="gdpr-section">
+            <div class="gdpr-toggle" onclick="toggleGDPR()">
+                <h3>GDPR och Integritetspolicy</h3>
+                <span class="icon">▼</span>
+            </div>
+            <div class="gdpr-content" id="gdprContent">
+                <h4>Dataskydd och integritet</h4>
+                <p>REDAKTÖR värnar om din integritet och är engagerad i att skydda dina personuppgifter. Denna integritetspolicy förklarar hur vi samlar in, använder och skyddar din information när du prenumererar på vårt nyhetsbrev.</p>
+
+                <h4>Vilka uppgifter samlar vi in?</h4>
+                <p>När du prenumererar på vårt nyhetsbrev samlar vi in följande information:</p>
+                <ul>
+                    <li>E-postadress (obligatoriskt)</li>
+                    <li>Namn (frivilligt)</li>
+                    <li>Tidpunkt för anmälan</li>
+                </ul>
+
+                <h4>Hur använder vi dina uppgifter?</h4>
+                <p>Vi använder dina personuppgifter för att:</p>
+                <ul>
+                    <li>Skicka vårt nyhetsbrev till dig</li>
+                    <li>Informera dig om viktiga uppdateringar och evenemang</li>
+                    <li>Förbättra innehållet i våra utskick baserat på läsarnas intresse</li>
+                </ul>
+
+                <h4>Rättslig grund för behandling</h4>
+                <p>Behandlingen av dina personuppgifter baseras på ditt samtycke, vilket du ger när du frivilligt anmäler dig till nyhetsbrevet. Du har när som helst rätt att återkalla ditt samtycke.</p>
+
+                <h4>Hur länge sparar vi dina uppgifter?</h4>
+                <p>Vi sparar dina uppgifter så länge du är prenumerant på vårt nyhetsbrev. När du avslutar din prenumeration raderas dina uppgifter inom 30 dagar.</p>
+
+                <h4>Delning med tredje part</h4>
+                <p>Vi använder Formspree som vår e-postleverantör för att hantera nyhetsbrevet. Formspree behandlar dina uppgifter i enlighet med GDPR. Vi säljer eller delar aldrig dina uppgifter med andra tredje parter för marknadsföringsändamål.</p>
+
+                <h4>Dina rättigheter enligt GDPR</h4>
+                <p>Enligt GDPR har du följande rättigheter:</p>
+                <ul>
+                    <li><strong>Rätt till tillgång:</strong> Du har rätt att få veta vilka uppgifter vi har om dig</li>
+                    <li><strong>Rätt till rättelse:</strong> Du kan begära att vi korrigerar felaktiga uppgifter</li>
+                    <li><strong>Rätt till radering:</strong> Du kan begära att vi raderar dina uppgifter</li>
+                    <li><strong>Rätt till begränsning:</strong> Du kan begära att vi begränsar behandlingen av dina uppgifter</li>
+                    <li><strong>Rätt till dataportabilitet:</strong> Du har rätt att få ut dina uppgifter i ett strukturerat format</li>
+                    <li><strong>Rätt att invända:</strong> Du har rätt att invända mot behandling av dina uppgifter</li>
+                    <li><strong>Rätt att återkalla samtycke:</strong> Du kan när som helst avsluta din prenumeration</li>
+                </ul>
+
+                <h4>Hur avslutar du din prenumeration?</h4>
+                <p>Du kan när som helst avsluta din prenumeration genom att klicka på "avregistrera"-länken som finns i varje nyhetsbrev. Du kan också kontakta oss direkt via vår <a href="/kontakt/">kontaktsida</a>.</p>
+
+                <h4>Säkerhet</h4>
+                <p>Vi vidtar lämpliga tekniska och organisatoriska åtgärder för att skydda dina personuppgifter mot obehörig åtkomst, förlust eller missbruk.</p>
+
+                <h4>Kontakta oss</h4>
+                <p>Om du har frågor om hur vi hanterar dina personuppgifter eller vill utöva någon av dina rättigheter, är du välkommen att kontakta oss via vår <a href="/kontakt/">kontaktsida</a>.</p>
+
+                <h4>Ändringar i integritetspolicyn</h4>
+                <p>Vi kan komma att uppdatera denna integritetspolicy från tid till annan. Eventuella ändringar publiceras på denna sida.</p>
+
+                <p><em>Senast uppdaterad: December 2024</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>REDAKTÖR</h3>
+                <p>Program som ger den grävande journalisten fler verktyg i verktygslådan.</p>
+            </div>
+            <div class="footer-links">
+                <h4>HITTA</h4>
+                <ul>
+                    <li><a href="/om-oss/">OM OSS</a></li>
+                    <li><a href="/verktyg/">VERKTYG</a></li>
+                    <li><a href="/nyheter/">NYHETER</a></li>
+                    <li><a href="/kontakt/">KONTAKT</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 REDAKTÖR. Den grävande journalistens verktygslåda.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        function toggleGDPR() {
+            const gdprToggle = document.querySelector('.gdpr-toggle');
+            const gdprContent = document.getElementById('gdprContent');
+            gdprToggle.classList.toggle('active');
+            gdprContent.classList.toggle('active');
+        }
+
+        // Form submission handling
+        document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formMessage = document.getElementById('formMessage');
+            const submitBtn = this.querySelector('.submit-btn');
+            const formData = new FormData(this);
+
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Skickar...';
+
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    formMessage.textContent = 'Tack för din prenumeration! Du kommer snart att få en bekräftelse via e-post.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                formMessage.textContent = 'Ett fel uppstod. Vänligen försök igen senare.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Prenumerera';
+            });
+        });
+    </script>
+</body>
+</html>
