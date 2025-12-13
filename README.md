@@ -59,3 +59,38 @@ The folder-based structure is the native way to achieve clean URLs on GitHub Pag
 │   └── index.html
 └── stil2-*.html (Original backup files)
 ```
+
+## Testing
+
+### Local Testing
+To test the site locally before deployment:
+
+```bash
+# Start a local web server
+python3 -m http.server 8000
+
+# Visit http://localhost:8000 in your browser
+# Or run the automated smoke test:
+./test-urls.sh
+
+# Test production site:
+./test-urls.sh https://xn--redaktr-f1a.se
+```
+
+### Smoke Test
+The `test-urls.sh` script automatically tests all page URLs and verifies they return HTTP 200 OK.
+
+### Manual Testing Checklist
+When testing on the deployed site:
+1. ✅ All URLs should end with `/` (trailing slash)
+2. ✅ No `.html` extensions should appear in the browser address bar
+3. ✅ Pages should load without 404 errors
+4. ✅ Navigation links should work correctly
+5. ✅ Test in private/incognito mode to avoid cache issues
+
+### Troubleshooting
+If you encounter 404 errors:
+- Clear your browser cache (old URLs may be cached)
+- Test in incognito/private browsing mode
+- Verify the GitHub Pages deployment completed successfully in the Actions tab
+- Check that the custom domain DNS is properly configured
