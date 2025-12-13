@@ -1,6 +1,6 @@
 # NOTE: This .htaccess file is for Apache servers only.
-# GitHub Pages does not support .htaccess files.
-# For GitHub Pages, physical files without extensions are used instead (om-oss, kontakt, etc.)
+# GitHub Pages does not support .htaccess files and will serve .html files directly.
+# Clean URLs on GitHub Pages work by accessing the .html files directly (e.g., /om-oss.html)
 
 RewriteEngine On
 RewriteBase /
@@ -8,50 +8,35 @@ RewriteBase /
 # Set default charset to UTF-8
 AddDefaultCharset UTF-8
 
-# Serve clean URLs without .html extension
-# Redirect old URLs with .html extension to clean URLs
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} ^(.+)\.html$
-RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+# Redirect old URLs with stil2- prefix to clean .html URLs
+RewriteRule ^stil2-omoss\.html$ /om-oss.html [R=301,L]
+RewriteRule ^stil2-omoss$ /om-oss.html [R=301,L]
+RewriteRule ^stil2-nyheter\.html$ /nyheter.html [R=301,L]
+RewriteRule ^stil2-nyheter$ /nyheter.html [R=301,L]
+RewriteRule ^stil2-projekt\.html$ /projekt.html [R=301,L]
+RewriteRule ^stil2-projekt$ /projekt.html [R=301,L]
+RewriteRule ^stil2-kontakt\.html$ /kontakt.html [R=301,L]
+RewriteRule ^stil2-kontakt$ /kontakt.html [R=301,L]
+RewriteRule ^stil2-artikel1\.html$ /artikel-1.html [R=301,L]
+RewriteRule ^stil2-artikel1$ /artikel-1.html [R=301,L]
+RewriteRule ^stil2-artikel2\.html$ /artikel-2.html [R=301,L]
+RewriteRule ^stil2-artikel2$ /artikel-2.html [R=301,L]
+RewriteRule ^stil2-artikel3\.html$ /artikel-3.html [R=301,L]
+RewriteRule ^stil2-artikel3$ /artikel-3.html [R=301,L]
+RewriteRule ^stil2-artikel4\.html$ /artikel-4.html [R=301,L]
+RewriteRule ^stil2-artikel4$ /artikel-4.html [R=301,L]
+RewriteRule ^stil2-biljetter\.html$ /biljetter.html [R=301,L]
+RewriteRule ^stil2-biljetter$ /biljetter.html [R=301,L]
+RewriteRule ^stil2-guldspaden\.html$ /guldspaden.html [R=301,L]
+RewriteRule ^stil2-guldspaden$ /guldspaden.html [R=301,L]
+RewriteRule ^stil2-kurs\.html$ /kurs.html [R=301,L]
+RewriteRule ^stil2-kurs$ /kurs.html [R=301,L]
+RewriteRule ^stil2-stipendier\.html$ /stipendier.html [R=301,L]
+RewriteRule ^stil2-stipendier$ /stipendier.html [R=301,L]
 
-# Redirect stil2- prefixed URLs to clean URLs
-RewriteRule ^stil2-omoss\.html$ /om-oss [R=301,L]
-RewriteRule ^stil2-omoss$ /om-oss [R=301,L]
-RewriteRule ^stil2-nyheter\.html$ /nyheter [R=301,L]
-RewriteRule ^stil2-nyheter$ /nyheter [R=301,L]
-RewriteRule ^stil2-projekt\.html$ /projekt [R=301,L]
-RewriteRule ^stil2-projekt$ /projekt [R=301,L]
-RewriteRule ^stil2-kontakt\.html$ /kontakt [R=301,L]
-RewriteRule ^stil2-kontakt$ /kontakt [R=301,L]
-RewriteRule ^stil2-artikel1\.html$ /artikel-1 [R=301,L]
-RewriteRule ^stil2-artikel1$ /artikel-1 [R=301,L]
-RewriteRule ^stil2-artikel2\.html$ /artikel-2 [R=301,L]
-RewriteRule ^stil2-artikel2$ /artikel-2 [R=301,L]
-RewriteRule ^stil2-artikel3\.html$ /artikel-3 [R=301,L]
-RewriteRule ^stil2-artikel3$ /artikel-3 [R=301,L]
-RewriteRule ^stil2-artikel4\.html$ /artikel-4 [R=301,L]
-RewriteRule ^stil2-artikel4$ /artikel-4 [R=301,L]
-RewriteRule ^stil2-biljetter\.html$ /biljetter [R=301,L]
-RewriteRule ^stil2-biljetter$ /biljetter [R=301,L]
-RewriteRule ^stil2-guldspaden\.html$ /guldspaden [R=301,L]
-RewriteRule ^stil2-guldspaden$ /guldspaden [R=301,L]
-RewriteRule ^stil2-kurs\.html$ /kurs [R=301,L]
-RewriteRule ^stil2-kurs$ /kurs [R=301,L]
-RewriteRule ^stil2-stipendier\.html$ /stipendier [R=301,L]
-RewriteRule ^stil2-stipendier$ /stipendier [R=301,L]
-
-# Serve clean URLs by adding .html extension internally
+# Optional: Support clean URLs without .html extension on Apache servers
+# This allows /om-oss to work as /om-oss.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^om-oss$ stil2-omoss.html [L]
-RewriteRule ^nyheter$ stil2-nyheter.html [L]
-RewriteRule ^projekt$ stil2-projekt.html [L]
-RewriteRule ^kontakt$ stil2-kontakt.html [L]
-RewriteRule ^artikel-1$ stil2-artikel1.html [L]
-RewriteRule ^artikel-2$ stil2-artikel2.html [L]
-RewriteRule ^artikel-3$ stil2-artikel3.html [L]
-RewriteRule ^artikel-4$ stil2-artikel4.html [L]
-RewriteRule ^biljetter$ stil2-biljetter.html [L]
-RewriteRule ^guldspaden$ stil2-guldspaden.html [L]
-RewriteRule ^kurs$ stil2-kurs.html [L]
-RewriteRule ^stipendier$ stil2-stipendier.html [L]
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]

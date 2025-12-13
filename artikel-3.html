@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt - REDAKTÖR</title>
-    <meta name="description" content="Kontakta REDAKTÖR">
+    <title>Veniam Quis Nostrud - REDAKTÖR</title>
+    <meta name="description" content="Exercitation ullamco laboris nisi ut aliquip">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,16 +92,6 @@
             color: var(--primary-foreground);
         }
 
-        .nav-link.back-btn {
-            background-color: var(--tagline);
-            padding: 0.5rem 1.5rem;
-            color: var(--primary-foreground);
-        }
-
-        .nav-link.back-btn:hover {
-            background-color: hsl(0, 70%, 50%);
-        }
-
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -131,146 +121,74 @@
             display: none;
         }
 
-        /* Page Header */
-        .page-header {
+        /* Article Header */
+        .article-header {
             background-color: var(--primary);
             padding: 8rem 1.5rem 4rem;
-            text-align: center;
         }
 
-        .page-header h1 {
+        .article-header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .article-header h1 {
             color: var(--primary-foreground);
-            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-size: clamp(2rem, 6vw, 3rem);
             font-weight: 700;
             margin-bottom: 1rem;
             animation: slideUp 0.8s ease-out forwards;
             opacity: 0;
         }
 
-        .page-header p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
+        .article-meta {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
             animation: slideUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
         }
 
-        /* Contact Section */
-        .contact-section {
-            max-width: 1200px;
+        /* Article Content */
+        .article-content {
+            max-width: 900px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
         }
 
-        .contact-info {
+        .article-body {
             animation: slideUp 0.6s ease-out forwards;
-            animation-delay: 0.2s;
+            animation-delay: 0.3s;
             opacity: 0;
         }
 
-        .contact-info h2 {
-            font-size: 1.75rem;
-            color: var(--foreground);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
+        .article-body p {
             color: var(--muted-foreground);
             font-size: 1.125rem;
             line-height: 1.8;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
-        .contact-details {
-            list-style: none;
-        }
-
-        .contact-details li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            color: var(--foreground);
-            font-size: 1.125rem;
-        }
-
-        .contact-details .icon {
-            width: 24px;
-            height: 24px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-foreground);
-            font-size: 0.75rem;
-        }
-
-        /* Contact Form */
-        .contact-form {
-            animation: slideUp 0.6s ease-out forwards;
-            animation-delay: 0.4s;
-            opacity: 0;
-        }
-
-        .contact-form h2 {
+        .article-body h2 {
             font-size: 1.75rem;
             color: var(--foreground);
-            margin-bottom: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
             font-weight: 500;
-            color: var(--foreground);
-            margin-bottom: 0.5rem;
+            margin-top: 2rem;
+            transition: color 0.3s ease;
         }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border);
-            font-family: var(--font-body);
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background-color: var(--primary);
-            color: var(--primary-foreground);
-            padding: 0.875rem 2rem;
-            border: none;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.875rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: var(--secondary);
+        .back-link:hover {
+            color: var(--secondary);
         }
 
         /* Footer */
@@ -366,10 +284,6 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
             }
 
-            .contact-section {
-                grid-template-columns: 1fr;
-            }
-
             .footer-container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -387,96 +301,74 @@
         <div class="nav-container">
             <a href="/" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="/om-oss" class="nav-link">Om Oss</a>
-                <a href="/nyheter" class="nav-link">Nyheter</a>
-                <a href="/projekt" class="nav-link">Projekt</a>
-                <a href="/kontakt" class="nav-link active">Kontakt</a>
+                <a href="/om-oss.html" class="nav-link">Om Oss</a>
+                <a href="/nyheter.html" class="nav-link active">Nyheter</a>
+                <a href="/projekt.html" class="nav-link">Projekt</a>
+                <a href="/kontakt.html" class="nav-link">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="/om-oss" class="nav-link">Om Oss</a>
-            <a href="/nyheter" class="nav-link">Nyheter</a>
-            <a href="/projekt" class="nav-link">Projekt</a>
-            <a href="/kontakt" class="nav-link active">Kontakt</a>
+            <a href="/om-oss.html" class="nav-link">Om Oss</a>
+            <a href="/nyheter.html" class="nav-link active">Nyheter</a>
+            <a href="/projekt.html" class="nav-link">Projekt</a>
+            <a href="/kontakt.html" class="nav-link">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
 
-    <!-- Page Header -->
-    <header class="page-header">
-        <h1>Kontakt</h1>
-        <p>Lorem ipsum dolor sit amet consectetur</p>
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="article-header-content">
+            <h1>Veniam Quis Nostrud</h1>
+            <p class="article-meta">8 November 2024</p>
+        </div>
     </header>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="contact-info">
-            <h2>Lorem Ipsum</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            <ul class="contact-details">
-                <li>
-                    <span class="icon">✉</span>
-                    lorem@ipsum.com
-                </li>
-                <li>
-                    <span class="icon">📍</span>
-                    Lorem, Ipsum
-                </li>
-                <li>
-                    <span class="icon">📞</span>
-                    00-000 00 00
-                </li>
-            </ul>
-        </div>
+    <!-- Article Content -->
+    <main class="article-content">
+        <div class="article-body">
+            <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
-        <div class="contact-form">
-            <h2>Lorem Ipsum</h2>
-            <form>
-                <div class="form-group">
-                    <label for="name">Lorem</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Ipsum</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Dolor</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Lorem</button>
-            </form>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+            <h2>Excepteur Sint Occaecat</h2>
+            <p>Cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+
+            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+
+            <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+
+            <a href="/nyheter.html" class="back-link">← Tillbaka till Nyheter</a>
         </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <h3>REDAKTÖR</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Program som ger den grävande journalisten fler verktyg i verktygslådan</p>
             </div>
             <div class="footer-links">
-                <h4>Lorem Ipsum</h4>
+                <h4>LOREM IPSUM</h4>
                 <ul>
-                    <li><a href="/om-oss">Om Oss</a></li>
-                    <li><a href="/nyheter">Nyheter</a></li>
-                    <li><a href="/projekt">Projekt</a></li>
-                    <li><a href="/kontakt">Kontakt</a></li>
+                    <li><a href="/om-oss.html">Om Oss</a></li>
+                    <li><a href="/nyheter.html">Nyheter</a></li>
+                    <li><a href="/projekt.html">Projekt</a></li>
+                    <li><a href="/kontakt.html">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h4>Kontakt</h4>
                 <ul>
-                    <li>lorem@ipsum.com</li>
-                    <li>Lorem, Ipsum</li>
+                    <li>peterdouglashang@gmail.com</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 REDAKTÖR. Lorem ipsum dolor sit amet.</p>
+            <p>© 2026 REDAKTÖR. Den grävande journalistens verktygslåda.</p>
         </div>
     </footer>
 

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dolor Sit Amet - REDAKTÖR</title>
-    <meta name="description" content="Sed do eiusmod tempor incididunt ut labore">
+    <title>Kontakt - REDAKTÖR</title>
+    <meta name="description" content="Kontakta REDAKTÖR">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -92,6 +92,16 @@
             color: var(--primary-foreground);
         }
 
+        .nav-link.back-btn {
+            background-color: var(--tagline);
+            padding: 0.5rem 1.5rem;
+            color: var(--primary-foreground);
+        }
+
+        .nav-link.back-btn:hover {
+            background-color: hsl(0, 70%, 50%);
+        }
+
         .nav-cta {
             background-color: var(--tagline);
             color: var(--primary-foreground);
@@ -123,34 +133,9 @@
 
         /* Page Header */
         .page-header {
-            position: relative;
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .page-header-background {
-            position: absolute;
-            inset: 0;
-            background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .page-header-overlay {
-            position: absolute;
-            inset: 0;
-            background-color: rgba(87, 35, 42, 0.85);
-        }
-
-        .page-header-content {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
+            background-color: var(--primary);
             padding: 8rem 1.5rem 4rem;
-            width: 100%;
+            text-align: center;
         }
 
         .page-header h1 {
@@ -164,70 +149,127 @@
 
         .page-header p {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             max-width: 600px;
+            margin: 0 auto;
             animation: slideUp 0.8s ease-out forwards;
             animation-delay: 0.2s;
             opacity: 0;
         }
 
-        /* Main Content */
-        .main-content {
-            max-width: 900px;
+        /* Contact Section */
+        .contact-section {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
         }
 
-        .content-section {
-            margin-bottom: 3rem;
+        .contact-info {
             animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.2s;
             opacity: 0;
         }
 
-        .content-section:nth-child(1) { animation-delay: 0.2s; }
-        .content-section:nth-child(2) { animation-delay: 0.3s; }
-        .content-section:nth-child(3) { animation-delay: 0.4s; }
-
-        .content-section h2 {
+        .contact-info h2 {
             font-size: 1.75rem;
             color: var(--foreground);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .content-section p {
+        .contact-info p {
             color: var(--muted-foreground);
             font-size: 1.125rem;
             line-height: 1.8;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
-        .content-section ul {
-            color: var(--muted-foreground);
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--foreground);
             font-size: 1.125rem;
-            line-height: 1.8;
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
         }
 
-        .content-section li {
+        .contact-details .icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-foreground);
+            font-size: 0.75rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            animation: slideUp 0.6s ease-out forwards;
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .contact-form h2 {
+            font-size: 1.75rem;
+            color: var(--foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: var(--foreground);
             margin-bottom: 0.5rem;
         }
 
-        .cta-button {
-            display: inline-block;
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
             background-color: var(--primary);
             color: var(--primary-foreground);
             padding: 0.875rem 2rem;
+            border: none;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-size: 0.875rem;
             font-weight: 600;
-            text-decoration: none;
+            cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-top: 1rem;
         }
 
-        .cta-button:hover {
+        .submit-btn:hover {
             background-color: var(--secondary);
         }
 
@@ -324,6 +366,10 @@
                 border-top: 1px solid rgba(255, 255, 255, 0.2);
             }
 
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+
             .footer-container {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -341,85 +387,95 @@
         <div class="nav-container">
             <a href="/" class="nav-logo">REDAKTÖR</a>
             <div class="nav-links">
-                <a href="/om-oss" class="nav-link">Om Oss</a>
-                <a href="/nyheter" class="nav-link">Nyheter</a>
-                <a href="/projekt" class="nav-link">Projekt</a>
-                <a href="/kontakt" class="nav-link">Kontakt</a>
+                <a href="/om-oss.html" class="nav-link">Om Oss</a>
+                <a href="/nyheter.html" class="nav-link">Nyheter</a>
+                <a href="/projekt.html" class="nav-link">Projekt</a>
+                <a href="/kontakt.html" class="nav-link active">Kontakt</a>
                 <a href="#" class="nav-cta">Bli Medlem</a>
             </div>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
         </div>
         <div class="mobile-nav" id="mobileNav">
-            <a href="/om-oss" class="nav-link">Om Oss</a>
-            <a href="/nyheter" class="nav-link">Nyheter</a>
-            <a href="/projekt" class="nav-link">Projekt</a>
-            <a href="/kontakt" class="nav-link">Kontakt</a>
+            <a href="/om-oss.html" class="nav-link">Om Oss</a>
+            <a href="/nyheter.html" class="nav-link">Nyheter</a>
+            <a href="/projekt.html" class="nav-link">Projekt</a>
+            <a href="/kontakt.html" class="nav-link active">Kontakt</a>
             <a href="#" class="nav-cta">Bli Medlem</a>
         </div>
     </nav>
 
     <!-- Page Header -->
     <header class="page-header">
-        <div class="page-header-background"></div>
-        <div class="page-header-overlay"></div>
-        <div class="page-header-content">
-            <h1>Dolor Sit Amet</h1>
-            <p>Sed do eiusmod tempor incididunt ut labore</p>
-        </div>
+        <h1>Kontakt</h1>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
     </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <section class="content-section">
-            <h2>Om Programmet</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </section>
-
-        <section class="content-section">
-            <h2>Vad Ingår</h2>
-            <ul>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Consectetur adipiscing elit</li>
-                <li>Sed do eiusmod tempor incididunt</li>
-                <li>Ut labore et dolore magna aliqua</li>
-                <li>Ut enim ad minim veniam</li>
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-info">
+            <h2>Lorem Ipsum</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <ul class="contact-details">
+                <li>
+                    <span class="icon">✉</span>
+                    lorem@ipsum.com
+                </li>
+                <li>
+                    <span class="icon">📍</span>
+                    Lorem, Ipsum
+                </li>
+                <li>
+                    <span class="icon">📞</span>
+                    00-000 00 00
+                </li>
             </ul>
-        </section>
+        </div>
 
-        <section class="content-section">
-            <h2>Ansök Nu</h2>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            <a href="/kontakt" class="cta-button">Kontakta Oss</a>
-        </section>
-    </main>
+        <div class="contact-form">
+            <h2>Lorem Ipsum</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Lorem</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Ipsum</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Dolor</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Lorem</button>
+            </form>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <h3>REDAKTÖR</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Program som ger den grävande journalisten fler verktyg i verktygslådan</p>
             </div>
             <div class="footer-links">
-                <h4>Lorem Ipsum</h4>
+                <h4>LOREM IPSUM</h4>
                 <ul>
-                    <li><a href="/om-oss">Om Oss</a></li>
-                    <li><a href="/nyheter">Nyheter</a></li>
-                    <li><a href="/projekt">Projekt</a></li>
-                    <li><a href="/kontakt">Kontakt</a></li>
+                    <li><a href="/om-oss.html">Om Oss</a></li>
+                    <li><a href="/nyheter.html">Nyheter</a></li>
+                    <li><a href="/projekt.html">Projekt</a></li>
+                    <li><a href="/kontakt.html">Kontakt</a></li>
                 </ul>
             </div>
             <div class="footer-links">
                 <h4>Kontakt</h4>
                 <ul>
-                    <li>lorem@ipsum.com</li>
-                    <li>Lorem, Ipsum</li>
+                    <li>peterdouglashang@gmail.com</li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 REDAKTÖR. Lorem ipsum dolor sit amet.</p>
+            <p>© 2026 REDAKTÖR. Den grävande journalistens verktygslåda.</p>
         </div>
     </footer>
 
