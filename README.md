@@ -7,6 +7,7 @@ This site uses a folder-based structure for clean URLs on GitHub Pages:
 - `/om-oss/` - About page (om-oss/index.html)
 - `/kontakt/` - Contact page (kontakt/index.html)
 - `/nyheter/` - News page (nyheter/index.html)
+- `/prenumerera/` - Newsletter subscription page (prenumerera/index.html)
 - `/projekt/` - Projects page (projekt/index.html)
 - `/artikel-1/`, `/artikel-2/`, etc. - Individual articles
 - `/biljetter/`, `/guldspaden/`, `/kurs/`, `/stipendier/` - Other pages
@@ -41,6 +42,8 @@ The folder-based structure is the native way to achieve clean URLs on GitHub Pag
 │   └── index.html (Projects page)
 ├── nyheter/
 │   └── index.html (News page)
+├── prenumerera/
+│   └── index.html (Newsletter subscription page)
 ├── artikel-1/
 │   └── index.html (Article 1)
 ├── artikel-2/
@@ -57,8 +60,18 @@ The folder-based structure is the native way to achieve clean URLs on GitHub Pag
 │   └── index.html
 ├── stipendier/
 │   └── index.html
+├── PRENUMERERA_SETUP.md (Newsletter setup guide)
 └── stil2-*.html (Original backup files)
 ```
+
+## Newsletter Subscription
+
+The site includes a newsletter subscription feature (`/prenumerera/`) with:
+- Email collection form
+- GDPR-compliant privacy policy
+- Formspree integration for static site email handling
+
+**Setup Required**: Before the newsletter form will work, you need to configure Formspree. See `PRENUMERERA_SETUP.md` for detailed instructions.
 
 ## Testing
 
