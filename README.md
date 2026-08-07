@@ -1,109 +1,121 @@
-# redaktor
+# REDAKTÖR
 
-## Clean URL Structure
+En svensk journalistikwebbplats publicerad på [redaktör.se](https://xn--redaktr-f1a.se) via GitHub Pages. Sajten riktar sig till journalister och redaktörer och samlar nyheter, verktyg, artiklar om AI-hjälpmedel, priset Guldspaden med mera.
 
-This site uses a folder-based structure for clean URLs on GitHub Pages:
-- `/` or `/index.html` - Homepage
-- `/om-oss/` - About page (om-oss/index.html)
-- `/kontakt/` - Contact page (kontakt/index.html)
-- `/nyheter/` - News page (nyheter/index.html)
-- `/prenumerera/` - Newsletter subscription page (prenumerera/index.html)
-- `/projekt/` - Projects page (projekt/index.html)
-- `/artikel-1/`, `/artikel-2/`, etc. - Individual articles
-- `/biljetter/`, `/guldspaden/`, `/kurs/`, `/stipendier/` - Other pages
+---
 
-## Deployment
+## Om projektet
 
-### GitHub Pages (Current Setup)
-The site is configured for GitHub Pages deployment. Clean URLs work using a folder structure where each page is an `index.html` file inside its own directory.
+**REDAKTÖR** är en statisk webbplats byggd med ren HTML och CSS, utan ramverk eller byggverktyg. All stil definieras med CSS-variabler direkt i varje sida. Sajten hostas kostnadsfritt via GitHub Pages med ett anpassat domännamn.
 
-**No configuration needed** - just push to the main branch and GitHub Pages will serve the files.
+---
 
-URLs are accessed with trailing slashes:
-- `https://yourdomain.com/om-oss/` → serves `/om-oss/index.html`
-- `https://yourdomain.com/kontakt/` → serves `/kontakt/index.html`
+## Teknik
 
-### Why This Approach?
-GitHub Pages is a static host and does not support:
-- `.htaccess` files (Apache-specific)
-- Server-side URL rewriting
-- Custom redirect rules
+| Teknik | Användning |
+|---|---|
+| **HTML5** | Alla sidor — ren statisk HTML |
+| **CSS (inline per sida)** | Styling med delade CSS-variabler |
+| **Google Fonts** | `Oswald` (rubriker) + `Source Sans 3` (brödtext) |
+| **GitHub Pages** | Hosting och publicering |
+| **Formspree** | Hantering av nyhetsbrevs-formulär |
 
-The folder-based structure is the native way to achieve clean URLs on GitHub Pages.
+### Designsystem
 
-## File Structure
-```
-├── index.html (Homepage)
-├── om-oss/
-│   └── index.html (About page)
-├── kontakt/
-│   └── index.html (Contact page)
-├── projekt/
-│   └── index.html (Projects page)
-├── nyheter/
-│   └── index.html (News page)
-├── prenumerera/
-│   └── index.html (Newsletter subscription page)
-├── artikel-1/
-│   └── index.html (Article 1)
-├── artikel-2/
-│   └── index.html (Article 2)
-├── artikel-3/
-│   └── index.html (Article 3)
-├── artikel-4/
-│   └── index.html (Article 4)
-├── biljetter/
-│   └── index.html
-├── guldspaden/
-│   └── index.html
-├── kurs/
-│   └── index.html
-├── stipendier/
-│   └── index.html
-├── PRENUMERERA_SETUP.md (Newsletter setup guide)
-└── stil2-*.html (Original backup files)
+Varje sida använder ett gemensamt set CSS-variabler:
+
+```css
+--primary:   hsl(345, 63%, 30%)  /* vinröd/mörkröd */
+--font-heading: 'Oswald', sans-serif
+--font-body:    'Source Sans 3', sans-serif
 ```
 
-## Newsletter Subscription
+Layouten bygger på en fast navigeringsbar högst upp, breda hero-sektioner och responsiva rutnät.
 
-The site includes a newsletter subscription feature (`/prenumerera/`) with:
-- Email collection form
-- GDPR-compliant privacy policy
-- Formspree integration for static site email handling
+---
 
-**Setup Required**: Before the newsletter form will work, you need to configure Formspree. See `PRENUMERERA_SETUP.md` for detailed instructions.
+## Struktur
 
-## Testing
+```
+redaktor/
+│
+├── index.html                  ← Startsida
+├── CNAME                       ← Anpassad domän: xn--redaktr-f1a.se
+│
+├── Sidor (varje mapp = en ren URL)
+│   ├── om-oss/                 ← Om oss
+│   ├── kontakt/                ← Kontakt
+│   ├── nyheter/                ← Nyheter
+│   ├── prenumerera/            ← Nyhetsbrev (Formspree)
+│   ├── verktyg/                ← Verktyg för journalister
+│   ├── guldspaden/             ← Guldspaden 2024
+│   ├── kommunkoll/             ← Kommunkoll
+│   ├── rattstavaren/           ← Rättstavaren
+│   ├── samarbetspartners/      ← Samarbetspartners
+│   ├── din-ide/                ← Skicka in din idé
+│   │
+│   ├── artikel-1/              ← Artikel: NotebookLM
+│   ├── artikel-2/              ← Artikel: Riksdagen.se
+│   ├── artikel-3/              ← Artikel: Perplexity AI
+│   └── artikel-4/              ← Artikel: Otter.ai
+│
+├── stil2-*.html                ← Reservkopior av sidor (används ej aktivt)
+├── test-urls.sh                ← Röktest — kontrollerar att alla URL:er ger HTTP 200
+├── PRENUMERERA_SETUP.md        ← Guide för att konfigurera Formspree
+└── URL_FIX_SUMMARY.md          ← Anteckningar om URL-omstruktureringen
+```
 
-### Local Testing
-To test the site locally before deployment:
+### Varför mappar i stället för .html-filer?
+
+GitHub Pages är en statisk värd och stödjer inte `.htaccess` eller server-side URL-omskrivning. Att lägga varje sida i en egen mapp som `om-oss/index.html` är det inbyggda sättet att få rena URL:er utan filnamnstillägg:
+
+```
+https://redaktör.se/om-oss/   →   om-oss/index.html
+https://redaktör.se/kontakt/  →   kontakt/index.html
+```
+
+---
+
+## Nyhetsbrev
+
+Sidan `/prenumerera/` innehåller ett e-postformulär med:
+- GDPR-anpassad integritetspolicy
+- Formspree-integration för e-posthantering på en statisk sajt
+
+**Kräver konfiguration:** Formuläret fungerar inte förrän Formspree är konfigurerat. Se `PRENUMERERA_SETUP.md` för instruktioner.
+
+---
+
+## Driftsättning
+
+### GitHub Pages
+Ingen konfiguration krävs — pusha till `main`-grenen så publiceras sajten automatiskt.
+
+### Lokal testning
 
 ```bash
-# Start a local web server
+# Starta en lokal webbserver
 python3 -m http.server 8000
+# Besök http://localhost:8000
 
-# Visit http://localhost:8000 in your browser
-# Or run the automated smoke test:
+# Kör automatiskt röktest (lokalt):
 ./test-urls.sh
 
-# Test production site:
+# Kör röktest mot produktionssajten:
 ./test-urls.sh https://xn--redaktr-f1a.se
 ```
 
-### Smoke Test
-The `test-urls.sh` script automatically tests all page URLs and verifies they return HTTP 200 OK.
+### Checklista vid testning
 
-### Manual Testing Checklist
-When testing on the deployed site:
-1. ✅ All URLs should end with `/` (trailing slash)
-2. ✅ No `.html` extensions should appear in the browser address bar
-3. ✅ Pages should load without 404 errors
-4. ✅ Navigation links should work correctly
-5. ✅ Test in private/incognito mode to avoid cache issues
+1. ✅ Alla URL:er avslutas med `/`
+2. ✅ Inga `.html`-tillägg syns i adressfältet
+3. ✅ Sidor laddas utan 404-fel
+4. ✅ Navigeringslänkar fungerar
+5. ✅ Testa i privat/inkognitoläge för att undvika cacheproblem
 
-### Troubleshooting
-If you encounter 404 errors:
-- Clear your browser cache (old URLs may be cached)
-- Test in incognito/private browsing mode
-- Verify the GitHub Pages deployment completed successfully in the Actions tab
-- Check that the custom domain DNS is properly configured
+### Felsökning
+
+- Rensa webbläsarens cache (gamla URL:er kan vara cachade)
+- Testa i inkognitoläge
+- Kontrollera att GitHub Pages-driftsättningen slutförts (fliken Actions)
+- Verifiera att DNS för den anpassade domänen är korrekt konfigurerad
