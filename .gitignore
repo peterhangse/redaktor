@@ -1,3 +1,6 @@
 # OS-specific files
 .DS_Store
 Thumbs.db
+.serena/
+node_modules/
+.env
